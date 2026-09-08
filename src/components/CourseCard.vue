@@ -1,16 +1,22 @@
 <template>
   <div class="course-list">
     <div class="course-card">
-      <h3>ชื่อคอร์ส: ...</h3>
-      <p>ราคา: ... บาท</p>
-      <button>เพิ่มในรายการโปรด</button>
+      <h3>ชื่อคอร์ส: {{ props.course.title }}</h3>
+      <p>ราคา: {{ props.course.price }} บาท</p>
+      <button :disabled="!favoriteStore.username" @click="favoriteStore.addFavorite(props.course)">เพิ่มในรายการโปรด</button>
     </div>
   </div>
 </template>
 
 <script setup>
 // TODO: import { useFavoriteStore } แล้วเขียนฟังก์ชันเพิ่มคอร์สลง store
+import { useFavoriteStore } from "../stores/favorite";
+const favoriteStore = useFavoriteStore();
 // TODO: defineProps({ course: Object })
+const props = defineProps({
+  course: Object,
+});
+
 </script>
 
 <style scoped>
@@ -55,5 +61,10 @@ button {
 
 button:hover {
   background-color: #2c9c6d;
+}
+
+button:disabled {
+  background-color: #a5a5a5;
+  cursor: not-allowed;
 }
 </style>

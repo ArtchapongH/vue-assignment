@@ -3,8 +3,9 @@ import Courses from "../views/Courses.vue";
 import Summary from "../views/Summary.vue";
 
 const routes = [
-  { path: "/", component: Courses },
+  { path: "/", name: 'home', component: Courses },
   // TODO: สร้าง Route สำหรับหน้า Summary
+  {path: "/summary", name: 'summary', component: Summary}
 ];
 
 const router = createRouter({
